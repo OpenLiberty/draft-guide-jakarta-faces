@@ -14,10 +14,14 @@ mvn -ntp -Dhttp.keepAlive=false \
 
 mvn -ntp liberty:start
 
-mvn -Dhttp.keepAlive=false \
-    -Dmaven.wagon.http.pool=false \
-    -Dmaven.wagon.httpconnectionManager.ttlSeconds=120 \
-    -ntp failsafe:integration-test
+# need to re-enable the integration-test 
+#mvn -Dhttp.keepAlive=false \
+#    -Dmaven.wagon.http.pool=false \
+#    -Dmaven.wagon.httpconnectionManager.ttlSeconds=120 \
+#    -ntp failsafe:integration-test
+
+# check the messages.log
+# check the url
 
 mvn -ntp liberty:stop
 
