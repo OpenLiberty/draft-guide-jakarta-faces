@@ -149,7 +149,7 @@ The [hotspot=servlet-mapping file=0]`<servlet-mapping>` element specifies which 
 
 By configuring both the servlet and the servlet mapping, you're ensuring that Jakarta Faces pages are properly processed and delivered in response to user requests.
 
-The [hotspot=project-stage file=0]`jakarta.faces.PROJECT_STAGE` context parameter determines the current stage of the application in its development lifecycle. Since it is currently set to [hotspot=project-stage-dev file=0]`Development`, you will see additional debugging information, including developer-friendly warning messages such as `WARNING: Apache MyFaces Core is running in DEVELOPMENT mode.` For more information about valid values and how to set the `PROJECT_STAGE` parameter, you can refer to the official https://jakarta.ee/specifications/faces/4.1/apidocs/jakarta.faces/jakarta/faces/application/projectstage[Jakarta Faces ProjectStage documentation^].
+The [hotspot=project-stage file=0]`jakarta.faces.PROJECT_STAGE` context parameter determines the current stage of the application in its development lifecycle. Because it is currently set to [hotspot=project-stage-dev file=0]`Development`, you will see additional debugging information, including developer-friendly warning messages such as `WARNING: Apache MyFaces Core is running in DEVELOPMENT mode.` For more information about valid values and how to set the `PROJECT_STAGE` parameter, you can refer to the official https://jakarta.ee/specifications/faces/4.1/apidocs/jakarta.faces/jakarta/faces/application/projectstage[Jakarta Faces ProjectStage documentation^].
 
 Because you are running Open Liberty in dev mode and have configured the Faces Servlet, all the changes are automatically picked up. 
 
