@@ -1,4 +1,4 @@
-//  Copyright (c) 2022, 2023 IBM Corporation and others.
+//  Copyright (c) 2024 IBM Corporation and others.
 // Licensed under Creative Commons Attribution-NoDerivatives
 // 4.0 International (CC BY-ND 4.0)
 //   https://creativecommons.org/licenses/by-nd/4.0/
@@ -13,7 +13,7 @@
 :page-essential: false
 :page-description: Learn how to build a dynamic web application using Jakarta Faces for the user interface, Jakarta Contexts and Dependency Injection for managing beans, and Jakarta Expression Language for binding and handling data.
 :guide-author: Open Liberty
-:page-tags: ['Jakarta EE']
+:page-tags: ['jakarta-ee']
 :page-related-guides: ['grpc-intro']
 :page-permalink: /guides/{projectid}
 :imagesdir: /img/guide/{projectid}
@@ -34,9 +34,9 @@ Learn how to build a dynamic web application using Jakarta Faces, Jakarta Contex
 
 == What you'll learn
 
-You'll learn how to build a dynamic web application using Jakarta Faces for the user interface (UI), Jakarta Contexts and Dependency Injection for managing backend logic, and Jakarta Expression Language for data binding. 
+You'll learn how to build a dynamic web application using Jakarta Faces for the user interface (UI), Jakarta Contexts and Dependency Injection (CDI) for managing backend logic, and Jakarta Expression Language (EL) for data binding.
 
-Jakarta Faces is a powerful framework for building web applications with reusable UI components. It provides an API for managing component state, handling events, server-side validation, page navigation, and supports internationalization. The framework also offers tag libraries for adding components and binding them to server-side objects, simplifying UI development. Jakarta Contexts and Dependency Injection (CDI) provides a flexible way to manage the lifecycle of backend beans, allowing managed beans to be automatically created and injected when needed. Jakarta Expression Language (EL) allows data binding between the UI and the backend, enabling componenets to display dynamic data and respond to user actions.
+Jakarta Faces is a powerful framework for building web applications with reusable UI components. It provides an API for managing component state, handling events, server-side validation, page navigation, and supports internationalization. The framework also offers tag libraries for adding components and binding them to server-side objects, simplifying UI development. Jakarta Contexts and Dependency Injection provides a flexible way to manage the lifecycle of backend beans, allowing managed beans to be automatically created and injected when needed. Jakarta Expression Language allows data binding between the UI and the backend, enabling componenets to display dynamic data and respond to user actions.
 
 The application you will build in this guide is a dynamic web application that displays system load data on demand. Using Jakarta Faces for the UI, you'll create a table to show the system's cpu load and heap memory usage. You'll also learn how to use CDI to provide the system load data from a managed bean, and to use Jakarta Expression Language to bind this data to the UI components.
 
@@ -65,7 +65,7 @@ After you see the following message, your Liberty instance is ready.
 The defaultServer server is ready to run a smarter planet.
 ----
 
-Check out the web application at http://localhost:9080/index.xhtml. Click the image:refresh.png[refresh icon, 20, 20] refresh button, located next to the table title, to update and display the latest system load data in the table.
+Check out the web application at http://localhost:9080/index.xhtml. Click the image:refresh.png[refresh icon, 18, 18] refresh button, located next to the table title, to update and display the latest system load data in the table.
 
 After you are finished checking out the application, stop the Liberty instance by pressing `CTRL+C` in the command-line session where you ran Liberty. Alternatively, you can run the `liberty:stop` goal from the `finish` directory in another shell session:
 
@@ -151,9 +151,9 @@ By configuring both the servlet and the servlet mapping, you're ensuring that Ja
 
 The [hotspot=project-stage file=0]`jakarta.faces.PROJECT_STAGE` context parameter determines the current stage of the application in its development lifecycle. Since it is currently set to [hotspot=project-stage-dev file=0]`Development`, you will see additional debugging information, including developer-friendly warning messages such as `WARNING: Apache MyFaces Core is running in DEVELOPMENT mode.` For more information about valid values and how to set the `PROJECT_STAGE` parameter, you can refer to the official https://jakarta.ee/specifications/faces/4.1/apidocs/jakarta.faces/jakarta/faces/application/projectstage[Jakarta Faces ProjectStage documentation^].
 
-Because you are running Open Liberty in dev mode and have configured the Faces Servlet, all the changes were automatically picked up. 
+Because you are running Open Liberty in dev mode and have configured the Faces Servlet, all the changes are automatically picked up. 
 
-Check out the web application that you created at http://localhost:9080/index.xhtml. You should see the static page with the system loads table displaying only the headers and no data.
+Check out the web application that you created at the http://localhost:9080/index.xhtml URL. You should see the static page with the system loads table displaying only the headers and no data.
 
 // =================================================================================================
 // Implementing backend logic with dependency injection
@@ -174,9 +174,9 @@ SystemLoadBean.java
 include::finish/src/main/java/io/openliberty/guides/application/SystemLoadBean.java[]
 ----
 
-Annotate the [hotspot file=0]`SystemLoadBean` class with a [hotspot=namedAnnotation file=0]`@Named` annotation to make it accessible in the Jakarta Faces pages under the name [hotspot=namedAnnotation file=0]`systemLoadBean`. Because the [hotspot=applicationScopedAnnotation file=0]`SystemLoadBean` bean is a CDI managed bean, a scope is necessary. An application scope is used in this example. To learn more about CDI, see https://openliberty.io/guides/cdi-intro.html[Injecting dependencies into microservices^].
+Annotate the [hotspot file=0]`SystemLoadBean` class with a [hotspot=namedAnnotation file=0]`@Named` annotation to make it accessible in the Jakarta Faces pages under the name [hotspot=namedAnnotation file=0]`systemLoadBean`. Because the [hotspot=applicationScopedAnnotation file=0]`SystemLoadBean` bean is a CDI managed bean, a scope is necessary. An application scope is used in this example. To learn more about CDI, see the https://openliberty.io/guides/cdi-intro.html[Injecting dependencies into microservices^] guide.
 
-The [hotspot=postConstruct file=0]`@PostConstruct` annotation ensures the [hotspot=init file=0]`init()` method runs after the [hotspot=systemLoadBean file=0]`SystemLoadBean` is initialized and denpendencies are injected. The [hotspot=init file=0]`init()` method sets up any required resources for the bean's lifecyccle.
+The [hotspot=postConstruct file=0]`@PostConstruct` annotation ensures the [hotspot=init file=0]`init()` method runs after the [hotspot=systemLoadBean file=0]`SystemLoadBean` is initialized and dependencies are injected. The [hotspot=init file=0]`init()` method sets up any required resources for the bean's lifecyccle.
 
 The [hotspot=fetchSystemLoadMethod file=0]`fetchSystemLoad()` method retrieves the current system load and memory usage, then updates the list of system load data.
 
@@ -187,7 +187,7 @@ The [hotspot=getSystemLoads file=0]`getSystemLoads()` method is a getter method 
 // =================================================================================================
 == Binding data to the UI with expression language
 
-Now that you have the backend logic implemented with CDI, you'll update the Jakarta Faces page to display the dynamic system load data by binding the UI components to the backend data using Jakarta Expression Language (EL).
+Now that you have the backend logic implemented with CDI, you'll update the Jakarta Faces page to display the dynamic system load data by binding the UI components to the backend data using Jakarta Expression Language.
 
 [role="code_command hotspot file=0", subs="quotes"]
 ----
@@ -208,7 +208,7 @@ SystemLoadBean.java
 include::finish/src/main/java/io/openliberty/guides/application/SystemLoadBean.java[]
 ----
 
-The [hotspot file=0]`index.html` uses a [hotspot=commandButton file=0]`<h:commandButton>` tag to create the refresh button, where the action [hotspot=commandButtonAction file=0]`#{systemLoadBean.fetchSystemLoad}` invokes the [hotspot=fetchSystemLoadMethod file=1]`fetchSystemLoad()` method using Jakarta Expression Language when clicked. This EL expression references the [hotspot=namedAnnotation file=1]`systemLoadBean` managed bean, triggering the method to update the system load data. The [hotspot=ajaxTag file=0]`<f:ajax>` tag ensures that the [hotspot=systemLoadForm file=0]`systemLoadForm` component is re-rendered without a full page reload.
+The [hotspot file=0]`index.html` uses a [hotspot=commandButton file=0]`<h:commandButton>` tag to create the refresh button, where the action [hotspot=commandButtonAction file=0]`#{systemLoadBean.fetchSystemLoad}` invokes the [hotspot=fetchSystemLoadMethod file=1]`fetchSystemLoad()` method using Jakarta Expression Language when the button is clicked. This EL expression references the [hotspot=namedAnnotation file=1]`systemLoadBean` managed bean, triggering the method to update the system load data. The [hotspot=ajaxTag file=0]`<f:ajax>` tag ensures that the [hotspot=systemLoadForm file=0]`systemLoadForm` component is re-rendered without a full page reload.
 
 The [hotspot=systemLoadsTable file=0]`systemLoadsTable` is populated using the [hotspot=uiRepeat file=0]`<ui:repeat>` tag, which iterates over the list of system load data provided by the [hotspot=namedAnnotation file=1]`systemLoadBean`. The EL expression [hotspot=dataBind file=0]`#{systemLoadBean.systemLoads}` calls the [hotspot=getSystemLoads file=1]`getSystemLoads()` method from the managed bean, binding the data to the UI components. If the `systemLoadBean` hasn't been created yet, it is automatically initialized at this point. For each entry, the `time`, `cpuLoad`, and `memoryUsage` fields are displayed using [hotspot=outputText1 hotspot=outputText2 hotspot=outputText3 file=0]`<h:outputText>`, while [hotspot=convertNumber1 hotspot=convertNumber2 file=0]`<f:convertNumber>` formats numeric values to two decimal places.
 
@@ -227,7 +227,7 @@ The required [hotspot=faces file=0]`faces`, [hotspot=expressionLanguage file=0]`
 
 Because you started the Open Liberty in dev mode at the beginning of the guide, so all the changes were automatically picked up.
 
-Navigate to the http://localhost:9080/index.xhtml to view your web application. Click on the image:refresh.png[refresh icon, 20, 20] refresh button to trigger an update on the system loads table.
+Navigate to the http://localhost:9080/index.xhtml to view your web application. Click on the image:refresh.png[refresh icon, 18, 18] refresh button to trigger an update on the system loads table.
 
 // =================================================================================================
 // Testing the application
@@ -248,7 +248,7 @@ SystemLoadBeanTest.java
 include::finish/src/test/java/io/openliberty/guides/application/SystemLoadBeanTest.java[]
 ----
 
-The [hotspot=setUp file=0]`setUp()` method is annotated with [hotspot=BeforeEach file=0]`@BeforeEach`, indicating that it is run before each test case to ensure a clean state for each test execution. In this case, it creates a new instance of `SystemLoadBean` and manually calls the `init()` method to initialize the list of system load data before each test.
+The [hotspot=setUp file=0]`setUp()` method is annotated with the [hotspot=BeforeEach file=0]`@BeforeEach` annotation, indicating that it is run before each test case to ensure a clean state for each test execution. In this case, it creates a new instance of `SystemLoadBean` and manually calls the `init()` method to initialize the list of system load data before each test.
 
 The [hotspot=testInitMethod file=0]`testInitMethod()` test case verifies that after initializing `SystemLoadBean`, the list of system load data is not null and contains at least one entry.
   
