@@ -58,19 +58,11 @@ jobs:
       - name: Post tests
         if: always()
         run: |
-          logsPath=$(find . -name "console.log" | grep system);
+          logsPath=$(find . -name "console.log");
           < "$logsPath" grep Launching
-          logsPath=$(find . -name "console.log" | grep client);
-          < "$logsPath" grep Launching
-      - name: Archive client server logs if failed
+      - name: Archive server logs if failed
         if: failure()
         uses: actions/upload-artifact@v4
         with:
-          name: client-server-logs
-          path: finish/client/target/liberty/wlp/usr/servers/defaultServer/logs/
-      - name: Archive system server logs if failed
-        if: failure()
-        uses: actions/upload-artifact@v4
-        with:
-          name: system-server-logs
-          path: finish/system/target/liberty/wlp/usr/servers/defaultServer/logs/
+          name: server-logs
+          path: finish/target/liberty/wlp/usr/servers/defaultServer/logs/
