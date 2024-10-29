@@ -7,10 +7,13 @@ set -euxo pipefail
 ##
 ##############################################################################
 
+mvn -version
+
 mvn -ntp -Dhttp.keepAlive=false \
     -Dmaven.wagon.http.pool=false \
     -Dmaven.wagon.httpconnectionManager.ttlSeconds=120 \
     -ntp -q clean package
+echo unit test
 mvn test
 mvn -ntp -Dhttp.keepAlive=false \
     -Dmaven.wagon.http.pool=false \
