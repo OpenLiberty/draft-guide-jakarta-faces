@@ -12,6 +12,8 @@ mvn -ntp -Dhttp.keepAlive=false \
     -Dmaven.wagon.httpconnectionManager.ttlSeconds=120 \
     -ntp -q clean package liberty:create liberty:install-feature liberty:deploy
 
+mvn test
+
 mvn -ntp liberty:start
 
 # check the messages.log
