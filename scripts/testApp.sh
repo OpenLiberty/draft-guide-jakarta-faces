@@ -10,7 +10,12 @@ set -euxo pipefail
 mvn -ntp -Dhttp.keepAlive=false \
     -Dmaven.wagon.http.pool=false \
     -Dmaven.wagon.httpconnectionManager.ttlSeconds=120 \
-    -ntp -q clean package liberty:create liberty:install-feature liberty:deploy
+    -ntp -q clean package
+mvn test
+mvn -ntp -Dhttp.keepAlive=false \
+    -Dmaven.wagon.http.pool=false \
+    -Dmaven.wagon.httpconnectionManager.ttlSeconds=120 \
+    -ntp -q liberty:create liberty:install-feature liberty:deploy
 
 mvn -ntp liberty:start
 
