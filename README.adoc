@@ -11,14 +11,14 @@
 :page-duration: 25 minutes
 :page-releasedate: 2024-12-07
 :page-essential: false
-:page-description: Learn how to build a dynamic web application using Jakarta Faces for the user interface, Jakarta Contexts and Dependency Injection for managing beans, and Jakarta Expression Language for binding and handling data.
+:page-description: Learn how to build a dynamic web application using Jakarta Faces for the user interface (UI), Jakarta Contexts and Dependency Injection (CDI) for managing beans, and Jakarta Expression Language (EL) for binding and handling data.
 :guide-author: Open Liberty
 :page-tags: ['jakarta-ee']
 :page-related-guides: ['grpc-intro']
 :page-permalink: /guides/{projectid}
 :imagesdir: /img/guide/{projectid}
 :page-seo-title: Building a dynamic web application using Jakarta Faces, Jakarta Contexts and Dependency Injection, and Jakarta Expression Language
-:page-seo-description: A getting started tutorial on how to build a dynamic web application using Jakarta Faces for the user interface, Jakarta Contexts and Dependency Injection for bean management, and Jakarta Expression Language for data binding and handling in Java.
+:page-seo-description: A getting started tutorial on how to build a dynamic web application using Jakarta Faces for the user interface (UI), Jakarta Contexts and Dependency Injection (CDI) for bean management, and Jakarta Expression Language (EL) for data binding and handling in Java.
 :common-includes: https://raw.githubusercontent.com/OpenLiberty/guides-common/prod
 :source-highlighter: prettify
 = Building a dynamic web application using Jakarta Faces
@@ -65,7 +65,7 @@ After you see the following message, your Liberty instance is ready.
 The defaultServer server is ready to run a smarter planet.
 ----
 
-Check out the web application at http://localhost:9080/index.xhtml. Click the image:refresh.png[refresh icon, 18, 18] refresh button, located next to the table title, to update and display the latest system load data in the table.
+Check out the web application at the http://localhost:9080/index.xhtml URL. Click the image:refresh.png[refresh icon, 18, 18] refresh button, located next to the table title, to update and display the latest system load data in the table.
 
 After you are finished checking out the application, stop the Liberty instance by pressing `CTRL+C` in the command-line session where you ran Liberty. Alternatively, you can run the `liberty:stop` goal from the `finish` directory in another shell session:
 
@@ -120,7 +120,7 @@ include::finish/src/main/webapp/WEB-INF/includes/footer.xhtml[]
 
 In the [hotspot file=0]`index.xhtml` file, the [hotspot=xmlns file=0]`xmlns` attributes define the XML namespaces for various Jakarta Faces tag libraries. These namespaces allow the page to use Jakarta Faces tags for templating, creating UI components, and enabling core functionality like form submissions and data binding. For more information on the various tag libraries and their roles in Jakarta Faces, refer to the https://jakarta.ee/learn/docs/jakartaee-tutorial/current/web/faces-facelets/faces-facelets.html#_tag_libraries_supported_by_facelets[Jakarta Faces Tag Libraries Documentation^].
 
-The [hotspot file=0]`index.xhtml` file combines standard HTML elements with Jakarta Faces components, enabling both static layout and dynamic functionality. Jakarta Faces tags, like [hotspot=outputStylesheet file=0]`<h:outputStylesheet>` and [hotspot=uiIncludeFooter file=0]`<ui:include>`, manage UI components, resource inclusion, and data binding, offering additional features beyond standard HTML; while standard elements like `<div>` and `<section>` structure the page's layout. The [hotspot=outputStylesheet file=0]`<h:outputStylesheet>` includes a CSS file to style the page. The [hotspot=uiIncludeFooter file=0]`<ui:include>` tag incorporates reusable components, such as the provided [hotspot file=1]`footer.xhtml` file, to streamline maintenance and reuse across multiple pages. 
+The [hotspot file=0]`index.xhtml` file combines standard HTML elements with Jakarta Faces components, providing both static layout and dynamic functionality. Standard HTML elements, like `<div>` and `<section>`, structure the page's layout. Jakarta Faces tags manage UI components, resource inclusion, and data binding, offering additional features beyond standard HTML. For example, the [hotspot=outputStylesheet file=0]`<h:outputStylesheet>` tag loads a CSS file for styling, and the [hotspot=uiIncludeFooter file=0]`<ui:include>` tag incorporates reusable components, such as the provided [hotspot file=1]`footer.xhtml` file, to streamline maintenance and reuse across multiple pages. 
 
 At this point, the page defines a table that has no data entries. We'll add dynamic content in the following steps.
 
@@ -165,13 +165,13 @@ To provide system load data to your web application, you'll create a CDI-managed
 [role="code_command hotspot file=0", subs="quotes"]
 ----
 #Create the SystemLoadBean class.#
-`src/main/java/io/openliberty/guides/application/SystemLoadBean.java`
+`src/main/java/io/openliberty/guides/bean/SystemLoadBean.java`
 ----
 
 SystemLoadBean.java
 [source, java, linenums, role='code_column hide_tags=copyright']
 ----
-include::finish/src/main/java/io/openliberty/guides/application/SystemLoadBean.java[]
+include::finish/src/main/java/io/openliberty/guides/bean/SystemLoadBean.java[]
 ----
 
 Annotate the [hotspot file=0]`SystemLoadBean` class with a [hotspot=namedAnnotation file=0]`@Named` annotation to make it accessible in the Jakarta Faces pages under the name [hotspot=namedAnnotation file=0]`systemLoadBean`. Because the [hotspot=applicationScopedAnnotation file=0]`SystemLoadBean` bean is a CDI managed bean, a scope is necessary. An application scope is used in this example. To learn more about CDI, see the https://openliberty.io/guides/cdi-intro.html[Injecting dependencies into microservices^] guide.
@@ -191,7 +191,7 @@ Now that you have the backend logic implemented with CDI, you'll update the Jaka
 
 [role="code_command hotspot file=0", subs="quotes"]
 ----
-#Update the index.xhtml file.#
+#Replace the index.xhtml file.#
 `src/main/webapp/index.xhtml`
 ----
 
@@ -205,12 +205,12 @@ include::finish/src/main/webapp/index.xhtml[]
 SystemLoadBean.java
 [source, java, linenums, role='code_column hide_tags=copyright']
 ----
-include::finish/src/main/java/io/openliberty/guides/application/SystemLoadBean.java[]
+include::finish/src/main/java/io/openliberty/guides/bean/SystemLoadBean.java[]
 ----
 
 The [hotspot file=0]`index.html` uses a [hotspot=commandButton file=0]`<h:commandButton>` tag to create the refresh button, where the action [hotspot=commandButtonAction file=0]`#{systemLoadBean.fetchSystemLoad}` invokes the [hotspot=fetchSystemLoadMethod file=1]`fetchSystemLoad()` method using Jakarta Expression Language when the button is clicked. This EL expression references the [hotspot=namedAnnotation file=1]`systemLoadBean` managed bean, triggering the method to update the system load data. The [hotspot=ajaxTag file=0]`<f:ajax>` tag ensures that the [hotspot=systemLoadForm file=0]`systemLoadForm` component is re-rendered without a full page reload.
 
-The [hotspot=systemLoadsTable file=0]`systemLoadsTable` is populated using the [hotspot=uiRepeat file=0]`<ui:repeat>` tag, which iterates over the list of system load data provided by the [hotspot=namedAnnotation file=1]`systemLoadBean`. The EL expression [hotspot=dataBind file=0]`#{systemLoadBean.systemLoads}` calls the [hotspot=getSystemLoads file=1]`getSystemLoads()` method from the managed bean, binding the data to the UI components. If the `systemLoadBean` hasn't been created yet, it is automatically initialized at this point. For each entry, the `time`, `cpuLoad`, and `memoryUsage` fields are displayed using [hotspot=outputText1 hotspot=outputText2 hotspot=outputText3 file=0]`<h:outputText>`, while [hotspot=convertNumber1 hotspot=convertNumber2 file=0]`<f:convertNumber>` formats numeric values to two decimal places.
+The [hotspot=systemLoadsTable file=0]`systemLoadsTable` is populated using the [hotspot=uiRepeat file=0]`<ui:repeat>` tag, which iterates over the list of system load data provided by the [hotspot=namedAnnotation file=1]`systemLoadBean`. The EL expression [hotspot=dataBind file=0]`#{systemLoadBean.systemLoads}` calls the [hotspot=getSystemLoads file=1]`getSystemLoads()` method from the managed bean, binding the data to the UI components. If the `systemLoadBean` hasn't been created yet, it is automatically initialized at this point. For each entry, the `time`, `cpuLoad`, and `memoryUsage` fields are displayed using [hotspot=outputText1 hotspot=outputText2 hotspot=outputText3 file=0]`<h:outputText>`. The [hotspot=convertNumber1 hotspot=convertNumber2 file=0]`<f:convertNumber>` tag formats `cpuLoad` to seven decimal places and `memoryUsage` to two decimal places.
 
 // =================================================================================================
 // Running the application
@@ -239,13 +239,13 @@ While you can manually verify the web application by visiting http://localhost:9
 [role="code_command hotspot file=0", subs="quotes"]
 ----
 #Create the SystemLoadBeanTest class.#
-`src/test/java/io/openliberty/guides/application/SystemLoadBeanTest.java`
+`src/test/java/io/openliberty/guides/bean/SystemLoadBeanTest.java`
 ----
 
 SystemLoadBeanTest.java
 [source, java, linenums, role='code_column hide_tags=copyright']
 ----
-include::finish/src/test/java/io/openliberty/guides/application/SystemLoadBeanTest.java[]
+include::finish/src/test/java/io/openliberty/guides/bean/SystemLoadBeanTest.java[]
 ----
 
 The [hotspot=setUp file=0]`setUp()` method is annotated with the [hotspot=BeforeEach file=0]`@BeforeEach` annotation, indicating that it is run before each test case to ensure a clean state for each test execution. In this case, it creates a new instance of `SystemLoadBean` and manually calls the `init()` method to initialize the list of system load data before each test.
@@ -267,8 +267,8 @@ You see the following output:
 -------------------------------------------------------
  T E S T S
 -------------------------------------------------------
-Running io.openliberty.guides.application.SystemLoadBeanTest
-Tests run: 3, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.037 s -- in io.openliberty.guides.application.SystemLoadBeanTest
+Running io.openliberty.guides.bean.SystemLoadBeanTest
+Tests run: 3, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.037 s -- in io.openliberty.guides.bean.SystemLoadBeanTest
 
 Results:
 

@@ -9,17 +9,16 @@
  * SPDX-License-Identifier: EPL-2.0
  *******************************************************************************/
 // end::copyright[]
-package io.openliberty.guides.application;
+package io.openliberty.guides.bean;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.junit.jupiter.api.Assertions.assertFalse;
-
-import org.junit.jupiter.api.Test;
-
-import io.openliberty.guides.application.model.SystemLoadData;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
 
 import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
+
+import io.openliberty.guides.bean.model.SystemLoadData;
 
 public class SystemLoadBeanTest {
 
@@ -51,8 +50,8 @@ public class SystemLoadBeanTest {
         int initialSize = systemLoadBean.getSystemLoads().size();
         systemLoadBean.fetchSystemLoad();
         int newSize = systemLoadBean.getSystemLoads().size();
-        assertEquals(initialSize + 1, newSize, "System loads size should increase by 1 after fetching new data");
-
+        assertEquals(initialSize + 1, newSize,
+                     "System loads size should increase by 1 after fetching new data");
     }
     // end::testFetchSystemLoad[]
 

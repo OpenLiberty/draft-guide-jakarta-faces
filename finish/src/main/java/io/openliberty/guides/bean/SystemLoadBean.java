@@ -9,20 +9,22 @@
  * SPDX-License-Identifier: EPL-2.0
  *******************************************************************************/
 // end::copyright[]
-package io.openliberty.guides.application;
+package io.openliberty.guides.bean;
 
 import java.lang.management.ManagementFactory;
 import java.lang.management.MemoryMXBean;
-import com.sun.management.OperatingSystemMXBean;
-import java.util.Calendar;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.List;
 import java.io.Serializable;
 
 import jakarta.annotation.PostConstruct;
 import jakarta.enterprise.context.ApplicationScoped;
 import jakarta.inject.Named;
-import io.openliberty.guides.application.model.SystemLoadData;
+
+import com.sun.management.OperatingSystemMXBean;
+
+import io.openliberty.guides.bean.model.SystemLoadData;
 
 // tag::namedAnnotation[]
 @Named("systemLoadBean")

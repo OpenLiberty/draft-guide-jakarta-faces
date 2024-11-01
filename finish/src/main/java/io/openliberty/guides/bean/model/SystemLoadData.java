@@ -9,7 +9,7 @@
  * SPDX-License-Identifier: EPL-2.0
  *******************************************************************************/
 // end::copyright[]
-package io.openliberty.guides.application.model;
+package io.openliberty.guides.bean.model;
 
 public class SystemLoadData {
     private String time;
