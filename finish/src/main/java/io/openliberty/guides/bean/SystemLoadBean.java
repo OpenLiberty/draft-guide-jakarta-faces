@@ -57,17 +57,17 @@ public class SystemLoadBean implements Serializable {
     // tag::fetchSystemLoadMethod[]
     public void fetchSystemLoad() {
         String time = Calendar.getInstance().getTime().toString();
-    
+
         double cpuLoad = OS.getCpuLoad() * 100;
-    
+
         long heapMax = MEM.getHeapMemoryUsage().getMax();
         long heapUsed = MEM.getHeapMemoryUsage().getUsed();
         double memoryUsage = heapUsed * 100.0 / heapMax;
-    
+
         SystemLoadData data = new SystemLoadData(time, cpuLoad, memoryUsage);
-    
+
         systemLoads.add(data);
-    }    
+    }
     // end::fetchSystemLoadMethod[]
 
     // tag::getSystemLoads[]
