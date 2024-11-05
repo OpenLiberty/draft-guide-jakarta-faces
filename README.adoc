@@ -196,7 +196,7 @@ Now that you have the backend logic implemented with CDI, you'll update the Jaka
 ----
 
 index.xhtml
-[source, xhtml, linenums, role='code_column']
+[source, xhtml, linenums, role='code_column hide_tags=copyright']
 ----
 include::finish/src/main/webapp/index.xhtml[]
 ----
