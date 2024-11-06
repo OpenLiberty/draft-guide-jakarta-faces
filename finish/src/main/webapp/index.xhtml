@@ -48,7 +48,9 @@
               <h2>System Loads</h2>
               <!-- tag::commandButton[] -->
               <!-- tag::commandButtonAction[] -->
-              <h:commandButton id="refreshButton" value="" action="#{systemLoadBean.fetchSystemLoad}" styleClass="refreshButton" title="Refresh system load data">
+              <h:commandButton id="refreshButton" styleClass="refreshButton" value=""
+                               title="Refresh system load data"
+                               action="#{systemLoadBean.fetchSystemLoad}" >
               <!-- end::commandButtonAction[] -->
                 <!-- tag::ajaxTag[] -->
                 <f:ajax render="systemLoadForm" />
@@ -82,7 +84,7 @@
                       <!-- tag::outputText2[] -->
                       <h:outputText value="#{systemLoadData.cpuLoad == null ? '-' : systemLoadData.cpuLoad}">
                         <!-- tag::convertNumber1[] -->
-                        <f:convertNumber pattern="#0.00" />
+                        <f:convertNumber pattern="#0.0000000" />
                         <!-- end::convertNumber1[] -->
                       </h:outputText>
                       <!-- end::outputText2[] -->

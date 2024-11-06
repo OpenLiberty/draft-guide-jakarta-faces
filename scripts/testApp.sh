@@ -10,14 +10,18 @@ set -euxo pipefail
 mvn -ntp -Dhttp.keepAlive=false \
     -Dmaven.wagon.http.pool=false \
     -Dmaven.wagon.httpconnectionManager.ttlSeconds=120 \
-    -ntp -q clean package liberty:create liberty:install-feature liberty:deploy
+    -q clean package liberty:create liberty:install-feature liberty:deploy
 
 mvn test
 
 mvn -ntp liberty:start
 
-# check the messages.log
-# check the url
+sleep 20
+
+cat target/liberty/wlp/usr/servers/defaultServer/logs/messages.log || exit 1
+
+status_code=$(curl -o /dev/null -s -w "%{http_code}" http://localhost:9080/index.xhtml)
+[ "$status_code" -eq 200 ] || exit 1
 
 mvn -ntp liberty:stop
 
