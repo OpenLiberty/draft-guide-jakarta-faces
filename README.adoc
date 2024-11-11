@@ -94,8 +94,8 @@ After you see the following message, your Liberty instance is ready in dev mode:
 
 [source, role="no_copy"]
 ----
-**************************************************
-*     Liberty is running in dev mode.
+**************************************************************
+*    Liberty is running in dev mode.
 ----
 
 Dev mode holds your command-line session to listen for file changes. Open another command-line session to continue, or open the project in your editor.
@@ -151,7 +151,13 @@ By configuring both the servlet and the servlet mapping, you're ensuring that Ja
 
 The [hotspot=project-stage file=0]`jakarta.faces.PROJECT_STAGE` context parameter determines the current stage of the application in its development lifecycle. Because it is currently set to [hotspot=project-stage-dev file=0]`Development`, you will see additional debugging information, including developer-friendly warning messages such as `WARNING: Apache MyFaces Core is running in DEVELOPMENT mode.` For more information about valid values and how to set the `PROJECT_STAGE` parameter, you can refer to the official https://jakarta.ee/specifications/faces/4.1/apidocs/jakarta.faces/jakarta/faces/application/projectstage[Jakarta Faces ProjectStage documentation^].
 
-Because you are running Open Liberty in dev mode and have configured the Faces Servlet, all the changes are automatically picked up. 
+In your dev mode console, type `r` and press `enter/return` key to restart the Liberty instance so that Liberty reads the configuration changes. When you see the following message, your Liberty instance is ready in dev mode:
+
+[source, role="no_copy"]
+----
+**************************************************************
+*    Liberty is running in dev mode.
+----
 
 Check out the web application that you created at the http://localhost:9080/index.xhtml URL. You should see the static page with the system loads table displaying only the headers and no data.
 
