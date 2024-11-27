@@ -214,9 +214,18 @@ SystemLoadBean.java
 include::finish/src/main/java/io/openliberty/guides/bean/SystemLoadBean.java[]
 ----
 
+// file 2
+styles.css
+[source, css, linenums]
+----
+include::finish/src/main/webapp/resources/css/styles.css[]
+----
+
 The [hotspot file=0]`index.xhtml` uses a [hotspot=commandButton file=0]`<h:commandButton>` tag to create the refresh button, where the action [hotspot=commandButtonAction file=0]`#{systemLoadBean.fetchSystemLoad}` invokes the [hotspot=fetchSystemLoadMethod file=1]`fetchSystemLoad()` method using Jakarta Expression Language when the button is clicked. This EL expression references the [hotspot=namedAnnotation file=1]`systemLoadBean` managed bean, triggering the method to update the system load data. The [hotspot=ajaxTag file=0]`<f:ajax>` tag ensures that the [hotspot=systemLoadForm file=0]`systemLoadForm` component is re-rendered without a full page reload.
 
 The [hotspot=systemLoadsTable file=0]`systemLoadsTable` is populated using the `<h:dataTable>` tag, which iterates over the list of system load data provided by the [hotspot=namedAnnotation file=1]`systemLoadBean`. The EL expression [hotspot=dataBind file=0]`#{systemLoadBean.systemLoads}` calls the [hotspot=getSystemLoads file=1]`getSystemLoads()` method from the managed bean, binding the data to the UI components. If the `systemLoadBean` hasn't been created yet, it is automatically initialized at this point. For each entry, the `time`, `cpuLoad`, and `memoryUsage` fields are displayed using [hotspot=outputText1 hotspot=outputText2 hotspot=outputText3 file=0]`<h:outputText>`. The [hotspot=convertNumber1 hotspot=convertNumber2 file=0]`<f:convertNumber>` tag formats `cpuLoad` to seven decimal places and `memoryUsage` to two decimal places.
+
+The `styleClass`, `headerClass`, and `rowClasses` attributes in the [hotspot=dataBind file=0]`<h:dataTable>` tag specify the style classes in the [hotspot=systemLoadsTableClasses file=2]`src/main/webapp/resources/css/styles.css` file.
 
 // =================================================================================================
 // Running the application

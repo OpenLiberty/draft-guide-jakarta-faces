@@ -64,7 +64,10 @@
             <!-- tag::dataBind[] -->
             <h:dataTable id="systemLoadsTable"
                          value="#{systemLoadBean.systemLoads}"
-                         var="systemLoadData">
+                         var="systemLoadData"
+                         styleClass = "systemLoadsTable"
+                         headerClass = "systemLoadsTableHeader"
+                         rowClasses = "systemLoadsTableOddRow,systemLoadsTableEvenRow">
             <!-- end::dataBind[] -->
               <h:column>
                 <f:facet name="header">Time</f:facet>
