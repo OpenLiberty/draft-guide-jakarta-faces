@@ -76,7 +76,8 @@
               <h:column>
                 <f:facet name="header">CPU Load (%) </f:facet>
                 <!-- tag::outputText2[] -->
-                <h:outputText value="#{systemLoadData.cpuLoad == null ? '-' : systemLoadData.cpuLoad}">
+                <h:outputText
+                  value="#{systemLoadData.cpuLoad == null ? '-' : systemLoadData.cpuLoad}">
                   <!-- tag::convertNumber1[] -->
                   <f:convertNumber pattern="#0.0000000" />
                   <!-- end::convertNumber1[] -->
@@ -87,7 +88,8 @@
               <h:column>
                 <f:facet name="header">Heap Memory Usuage (%) </f:facet>
                 <!-- tag::outputText3[] -->
-                <h:outputText value="#{systemLoadData.memoryUsage == null ? '-' : systemLoadData.memoryUsage}">
+                <h:outputText
+                  value="#{systemLoadData.memoryUsage == null ? '-' : systemLoadData.memoryUsage}">
                   <!-- tag::convertNumber2[] -->
                   <f:convertNumber pattern="#0.00" />
                   <!-- end::convertNumber2[] -->
