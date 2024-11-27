@@ -343,20 +343,20 @@ td {
     padding-left: 41px;
 }
 
-#systemLoadsTable thead tr {
+.systemLoadsTable {
+    border-collapse:collapse;
+}
+
+.systemLoadsTableHeader {
     background: #D6D9E4;
 }
 
-#systemLoadsTable tbody tr:nth-child(even) {
+.systemLoadsTableOddRow {
+    background: white;
+}
+
+.systemLoadsTableEvenRow {
     background: #EEEFF3;
-}
-
-#systemLoadsTable tbody tr.sourceRow {
-    border-top: 4px solid #D6D9E4;
-}
-
-#systemLoadsTable tbody tr.sourceRow a {
-    color: #5D6A8E;
 }
 
 .sourceRow a {
