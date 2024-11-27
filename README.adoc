@@ -216,7 +216,7 @@ include::finish/src/main/java/io/openliberty/guides/bean/SystemLoadBean.java[]
 
 // file 2
 styles.css
-[source, css, linenums]
+[source, css, linenums, role='code_column']
 ----
 include::finish/src/main/webapp/resources/css/styles.css[]
 ----
