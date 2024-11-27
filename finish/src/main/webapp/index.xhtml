@@ -77,7 +77,7 @@
               </h:column>
   
               <h:column>
-                <f:facet name="header">CPU Load (%) </f:facet>
+                <f:facet name="header">CPU Load (%)</f:facet>
                 <!-- tag::outputText2[] -->
                 <h:outputText
                   value="#{systemLoadData.cpuLoad == null ? '-' : systemLoadData.cpuLoad}">
@@ -89,7 +89,7 @@
               </h:column>
   
               <h:column>
-                <f:facet name="header">Heap Memory Usage (%) </f:facet>
+                <f:facet name="header">Heap Memory Usage (%)</f:facet>
                 <!-- tag::outputText3[] -->
                 <h:outputText
                   value="#{systemLoadData.memoryUsage == null ? '-' : systemLoadData.memoryUsage}">

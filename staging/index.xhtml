@@ -50,15 +50,19 @@
           </div>
         </div>
         <div class="sectionContent">
-          <table id="systemLoadsTable">
-            <thead>
-              <tr>
-                <th>Time</th>
-                <th>CPU Load (%)</th>
-                <th>Heap Memory Usage (%)</th>
-              </tr>
-            </thead>
-          </table>
+          <!-- tag::dataTable[] -->
+          <h:dataTable id="systemLoadsTable">
+            <h:column>
+              <f:facet name="header">Time</f:facet>
+            </h:column>
+            <h:column>
+              <f:facet name="header">CPU Load (%)</f:facet>
+            </h:column>
+            <h:column>
+              <f:facet name="header">Heap Memory Usage (%)</f:facet>
+            </h:column>
+          </h:dataTable>
+          <!-- end::dataTable[] -->
         </div>
       </div>
     </section>

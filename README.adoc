@@ -122,6 +122,8 @@ In the [hotspot file=0]`index.xhtml` file, the [hotspot=xmlns file=0]`xmlns` att
 
 The [hotspot file=0]`index.xhtml` file combines standard HTML elements with Jakarta Faces components, providing both static layout and dynamic functionality. Standard HTML elements, like `<div>` and `<section>`, structure the page's layout. Jakarta Faces tags offer additional features beyond standard HTML, such as managing UI components, including resources, and binding data. For example, the [hotspot=outputStylesheet file=0]`<h:outputStylesheet>` tag loads a CSS file for styling, and the [hotspot=uiIncludeFooter file=0]`<ui:include>` tag incorporates reusable components, such as the provided [hotspot file=1]`footer.xhtml` file, to streamline maintenance and reuse across multiple pages. 
 
+The [hotspot=dataTable file=0]`<h:dataTable>` tag is used to display a table.
+
 At this point, the page defines a table that has no data entries. We'll add dynamic content in the following steps.
 
 // =================================================================================================
