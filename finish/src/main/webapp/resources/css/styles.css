@@ -1,3 +1,4 @@
+/* tag::copyright[] */
 /*******************************************************************************
 * Copyright (c) 2024 IBM Corporation and others.
 * All rights reserved. This program and the accompanying materials
@@ -8,6 +9,7 @@
 * Contributors:
 *     IBM Corporation - initial API and implementation
 *******************************************************************************/
+/* end::copyright[] */
 @font-face {
     font-family: BunueloLight;
     src: url('#{resource["fonts/BunueloCleanPro-Light.otf"]}');
@@ -343,21 +345,23 @@ td {
     padding-left: 41px;
 }
 
-#systemLoadsTable thead tr {
+/* tag::systemLoadsTableClasses[] */
+.systemLoadsTable {
+    border-collapse:collapse;
+}
+
+.systemLoadsTableHeader {
     background: #D6D9E4;
 }
 
-#systemLoadsTable tbody tr:nth-child(even) {
+.systemLoadsTableOddRow {
+    background: white;
+}
+
+.systemLoadsTableEvenRow {
     background: #EEEFF3;
 }
-
-#systemLoadsTable tbody tr.sourceRow {
-    border-top: 4px solid #D6D9E4;
-}
-
-#systemLoadsTable tbody tr.sourceRow a {
-    color: #5D6A8E;
-}
+/* end::systemLoadsTableClasses[] */
 
 .sourceRow a {
     font-weight: 500;

@@ -61,48 +61,45 @@
           </div>
           <div class="sectionContent">
             <!-- tag::systemLoadsTable[] -->
-            <table id="systemLoadsTable">
-              <thead>
-                <tr>
-                  <th>Time</th>
-                  <th>CPU Load (%)</th>
-                  <th>Heap Memory Usage (%)</th>
-                </tr>
-              </thead>
-              <tbody id="systemLoadsTableBody">
-                <!-- tag::uiRepeat[] -->
-                <!-- tag::dataBind[] -->
-                <ui:repeat value="#{systemLoadBean.systemLoads}" var="systemLoadData">
-                <!-- end::dataBind[] -->
-                  <tr>
-                    <td>
-                      <!-- tag::outputText1[] -->
-                      <h:outputText value="#{systemLoadData.time}" />
-                      <!-- end::outputText1[] -->
-                    </td>
-                    <td>
-                      <!-- tag::outputText2[] -->
-                      <h:outputText value="#{systemLoadData.cpuLoad == null ? '-' : systemLoadData.cpuLoad}">
-                        <!-- tag::convertNumber1[] -->
-                        <f:convertNumber pattern="#0.0000000" />
-                        <!-- end::convertNumber1[] -->
-                      </h:outputText>
-                      <!-- end::outputText2[] -->
-                    </td>
-                    <td>
-                      <!-- tag::outputText3[] -->
-                      <h:outputText value="#{systemLoadData.memoryUsage == null ? '-' : systemLoadData.memoryUsage}">
-                        <!-- tag::convertNumber2[] -->
-                        <f:convertNumber pattern="#0.00" />
-                        <!-- end::convertNumber2[] -->
-                      </h:outputText>
-                      <!-- end::outputText3[] -->
-                    </td>
-                  </tr>
-                </ui:repeat>
-                <!-- end::uiRepeat[] -->
-              </tbody>
-            </table>
+            <!-- tag::dataBind[] -->
+            <h:dataTable id="systemLoadsTable"
+                         value="#{systemLoadBean.systemLoads}"
+                         var="systemLoadData"
+                         styleClass = "systemLoadsTable"
+                         headerClass = "systemLoadsTableHeader"
+                         rowClasses = "systemLoadsTableOddRow,systemLoadsTableEvenRow">
+            <!-- end::dataBind[] -->
+              <h:column>
+                <f:facet name="header">Time</f:facet>
+                <!-- tag::outputText1[] -->
+                <h:outputText value="#{systemLoadData.time}" />
+                <!-- end::outputText1[] -->
+              </h:column>
+  
+              <h:column>
+                <f:facet name="header">CPU Load (%)</f:facet>
+                <!-- tag::outputText2[] -->
+                <h:outputText
+                  value="#{systemLoadData.cpuLoad == null ? '-' : systemLoadData.cpuLoad}">
+                  <!-- tag::convertNumber1[] -->
+                  <f:convertNumber pattern="#0.0000000" />
+                  <!-- end::convertNumber1[] -->
+                </h:outputText>
+                <!-- end::outputText2[] -->
+              </h:column>
+  
+              <h:column>
+                <f:facet name="header">Heap Memory Usage (%)</f:facet>
+                <!-- tag::outputText3[] -->
+                <h:outputText
+                  value="#{systemLoadData.memoryUsage == null ? '-' : systemLoadData.memoryUsage}">
+                  <!-- tag::convertNumber2[] -->
+                  <f:convertNumber pattern="#0.00" />
+                  <!-- end::convertNumber2[] -->
+                </h:outputText>
+                <!-- end::outputText3[] -->
+              </h:column>
+            </h:dataTable>
             <!-- end::systemLoadsTable[] -->
           </div>
         </h:form>
